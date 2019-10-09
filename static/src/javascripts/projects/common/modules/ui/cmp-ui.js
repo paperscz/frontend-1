@@ -122,6 +122,23 @@ const handlePrivacySettingsClick = (evt: Event): void => {
     show();
 };
 
+const showSmartAppBanner = (): void => {
+    console.log('*** showSmartAppBanner ***');
+
+    if (!isInVariantSynchronous(commercialIabCompliant, 'variant')) {
+        const meta = document.createElement('meta');
+        meta.name = 'apple-itunes-app';
+        // content="app-id=409128287
+        // app-argument=https://www.theguardian.com/uk-news/2019/oct/09/arron-banks-apologises-for-xenophobic-tweet-targeting-merkel
+        // affiliate-data=ct=newsmartappbanner&pt=304191"
+        meta.content =
+            'app-id=409128287, app-argument=https://www.theguardian.com/uk-news/2019/oct/09/arron-banks-apologises-for-xenophobic-tweet-targeting-merkel, affiliate-data=ct=newsmartappbanner&pt=304191';
+        if (document && document.head) {
+            document.head.appendChild(meta);
+        }
+    }
+};
+
 export const addPrivacySettingsLink = (): void => {
     if (!isInVariantSynchronous(commercialIabCompliant, 'variant')) {
         return;
@@ -166,6 +183,8 @@ export const consentManagementPlatformUi = {
         if (isInVariantSynchronous(commercialIabCompliant, 'variant')) {
             return Promise.resolve(cmpUi.canShow());
         }
+
+        showSmartAppBanner();
 
         return Promise.resolve(false);
     },
