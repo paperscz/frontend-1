@@ -59,7 +59,6 @@ import { init as initReaderRevenueDevUtils } from 'common/modules/commercial/rea
 import {
     consentManagementPlatformUi,
     addPrivacySettingsLink,
-    showSmartAppBanner,
 } from 'common/modules/ui/cmp-ui';
 
 const initialiseTopNavItems = (): void => {
