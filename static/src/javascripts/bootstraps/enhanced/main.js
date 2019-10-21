@@ -387,6 +387,17 @@ const bootEnhanced = (): void => {
                 );
             }
 
+            require.ensure(
+                [],
+                require => {
+                    bootstrapContext(
+                        'cmp-ui',
+                        require('common/modules/cmp-ui').init
+                    );
+                },
+                'cmp-ui'
+            );
+
             // Mark the end of synchronous execution.
             markTime('App End');
             catchErrorsWithContext([
