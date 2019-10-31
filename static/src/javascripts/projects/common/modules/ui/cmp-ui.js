@@ -78,20 +78,20 @@ export const consentManagementPlatformUi = {
 };
 
 // Exposed for testing purposes only
-export const _ = {
-    // reset: (): void => {
-    //     if (overlay) {
-    //         if (overlay.parentNode) {
-    //             overlay.remove();
-    //         }
-    //         overlay = undefined;
-    //     }
-    //     uiPrepared = false;
-    // },
-    // CMP_READY_CLASS,
-    // CMP_ANIMATE_CLASS,
-    // OVERLAY_CLASS,
-    // IFRAME_CLASS,
-    // onReadyCmp,
-    // onCloseCmp,
-};
+// export const _ = {
+// reset: (): void => {
+//     if (overlay) {
+//         if (overlay.parentNode) {
+//             overlay.remove();
+//         }
+//         overlay = undefined;
+//     }
+//     uiPrepared = false;
+// },
+// CMP_READY_CLASS,
+// CMP_ANIMATE_CLASS,
+// OVERLAY_CLASS,
+// IFRAME_CLASS,
+// onReadyCmp,
+// onCloseCmp,
+// };

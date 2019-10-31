@@ -14,7 +14,6 @@ export const init = () => {
     ReactDOM.render(
         <ConsentManagementPlatform
             onClose={() => {
-                console.log('*** onClose ***');
                 ReactDOM.unmountComponentAtNode(container);
             }}
         />,
