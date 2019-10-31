@@ -3,6 +3,8 @@ import { cmpUi as cmpUi_ } from '@guardian/consent-management-platform';
 import { isInVariantSynchronous as isInVariantSynchronous_ } from 'common/modules/experiments/ab';
 import { consentManagementPlatformUi } from './cmp-ui';
 
+jest.mock('lib/raven');
+
 const cmpUi: any = cmpUi_;
 const isInVariantSynchronous: any = isInVariantSynchronous_;
 
