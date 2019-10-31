@@ -2,82 +2,68 @@
 import { isInVariantSynchronous } from 'common/modules/experiments/ab';
 import { commercialCmpUiIab } from 'common/modules/experiments/tests/commercial-cmp-ui-iab';
 import { cmpUi } from '@guardian/consent-management-platform';
-// import reportError from 'lib/report-error';
 import raven from 'lib/raven';
 
-// const onErrorCmp = (error: Error): void => {
-//     reportError(
-//         error,
-//         {
-//             feature: 'cmp',
-//         },
-//         false
-//     );
-// };
+let initUi;
 
 const show = (): Promise<boolean> => {
-    require.ensure(
-        [],
-        require => {
-            raven.context(
-                {
-                    tags: {
-                        feature: 'cmp',
+    if (initUi) {
+        initUi();
+    } else {
+        require.ensure(
+            [],
+            require => {
+                initUi = raven.context(
+                    {
+                        tags: {
+                            feature: 'cmp',
+                        },
                     },
-                },
-                require('common/modules/cmp-ui').init,
-                []
-            );
-        },
-        'cmp'
-    );
+                    require('common/modules/cmp-ui').init,
+                    []
+                );
+            },
+            'cmp'
+        );
+    }
 
     return Promise.resolve(true);
 };
 
-// const handlePrivacySettingsClick = (evt: Event): void => {
-//     evt.preventDefault();
+export const addPrivacySettingsLink = (): void => {
+    if (!isInVariantSynchronous(commercialCmpUiIab, 'variant')) {
+        return;
+    }
 
-//     show();
-// };
+    const privacyLink: ?HTMLElement = document.querySelector(
+        'a[data-link-name=privacy]'
+    );
 
-// export const addPrivacySettingsLink = (): void => {
-//     if (!isInVariantSynchronous(commercialCmpUiIab, 'variant')) {
-//         return;
-//     }
+    if (privacyLink) {
+        const privacyLinkListItem: ?Element = privacyLink.parentElement;
 
-//     const privacyLink: ?HTMLElement = document.querySelector(
-//         'a[data-link-name=privacy]'
-//     );
+        if (privacyLinkListItem) {
+            const newPrivacyLink: HTMLElement = privacyLink.cloneNode(false);
 
-//     if (privacyLink) {
-//         const privacyLinkListItem: ?Element = privacyLink.parentElement;
+            newPrivacyLink.dataset.linkName = 'privacy-settings';
+            newPrivacyLink.removeAttribute('href');
+            newPrivacyLink.innerText = 'Privacy settings';
 
-//         if (privacyLinkListItem) {
-//             const newPrivacyLink: HTMLElement = privacyLink.cloneNode(false);
+            const newPrivacyLinkListItem: Element = privacyLinkListItem.cloneNode(
+                false
+            );
 
-//             newPrivacyLink.dataset.linkName = 'privacy-settings';
-//             newPrivacyLink.removeAttribute('href');
-//             newPrivacyLink.innerText = 'Privacy settings';
+            newPrivacyLinkListItem.appendChild(newPrivacyLink);
 
-//             const newPrivacyLinkListItem: Element = privacyLinkListItem.cloneNode(
-//                 false
-//             );
+            privacyLinkListItem.insertAdjacentElement(
+                'afterend',
+                newPrivacyLinkListItem
+            );
 
-//             newPrivacyLinkListItem.appendChild(newPrivacyLink);
-
-//             privacyLinkListItem.insertAdjacentElement(
-//                 'afterend',
-//                 newPrivacyLinkListItem
-//             );
-
-//             newPrivacyLink.addEventListener(
-//                 'click',
-//                 handlePrivacySettingsClick
-//             );
-//         }
-//     }
-// };
+            newPrivacyLink.addEventListener('click', show);
+        }
+    }
+};
 
 export const consentManagementPlatformUi = {
     id: 'cmpUi',

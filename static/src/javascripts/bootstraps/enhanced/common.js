@@ -58,7 +58,7 @@ import { adFreeBanner } from 'common/modules/commercial/ad-free-banner';
 import { init as initReaderRevenueDevUtils } from 'common/modules/commercial/reader-revenue-dev-utils';
 import {
     consentManagementPlatformUi,
-    // addPrivacySettingsLink,
+    addPrivacySettingsLink,
 } from 'common/modules/ui/cmp-ui';
 
 const initialiseTopNavItems = (): void => {
@@ -359,7 +359,7 @@ const init = (): void => {
         ['c-banner-picker', initialiseBanner],
         ['c-increment-article-counts', updateArticleCounts],
         ['c-reader-revenue-dev-utils', initReaderRevenueDevUtils],
-        // ['c-add-privacy-settings-link', addPrivacySettingsLink],
+        ['c-add-privacy-settings-link', addPrivacySettingsLink],
     ]);
 };
 

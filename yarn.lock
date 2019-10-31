@@ -1166,11 +1166,12 @@
     style-loader "0.23.1"
     webpack "^4.2.0"
 
-"@guardian/consent-management-platform@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@guardian/consent-management-platform/-/consent-management-platform-1.0.2.tgz#f757c92a268a1c5ed198f3bb053d272d35d92e8f"
-  integrity sha512-YM75Fgf0T55lyIFraYWTMgO8xonDyf2X5wVF+/I5zdO5YD8KgQxiUK1C7oBMMLd+ez62T/6W/9xfRemWS7Tfig==
+"@guardian/consent-management-platform@1.1.0-beta.0":
+  version "1.1.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@guardian/consent-management-platform/-/consent-management-platform-1.1.0-beta.0.tgz#28ff23d4b834684cd7dce80f7b6abff8bf20cd33"
+  integrity sha512-Mt9M2wjEsRuNwYkKDEcfxEZ/e0DwawwjmkL2BbeG81Bq7ALOl3sjHLzJQOKCv3TmiPnSzrCkHAj/q6eY2O5QYg==
   dependencies:
+    "@guardian/src-foundations" "^0.2.3"
     consent-string "^1.5.1"
     js-cookie "^2.2.1"
 
@@ -1185,6 +1186,11 @@
     filesizegzip "^2.0.0"
     inquirer "^5.2.0"
     pretty-bytes "^4.0.2"
+
+"@guardian/src-foundations@^0.2.3":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@guardian/src-foundations/-/src-foundations-0.2.4.tgz#a2dc8267be6efb19c684b1bb27099ad58d887c3b"
+  integrity sha512-SYijZJndBv6bvoFHaWgAo2iOSkZgi4pLQWKB2GYOf5wzN1R/DOl3UUjNUHSF7vKVDzNnsChfiopl4WSx2gIH8g==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"

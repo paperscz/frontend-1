@@ -11,5 +11,13 @@ export const init = () => {
         document.body.appendChild(container);
     }
 
-    ReactDOM.render(<ConsentManagementPlatform />, container);
+    ReactDOM.render(
+        <ConsentManagementPlatform
+            onClose={() => {
+                console.log('*** onClose ***');
+                ReactDOM.unmountComponentAtNode(container);
+            }}
+        />,
+        container
+    );
 };
