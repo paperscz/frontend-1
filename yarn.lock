@@ -1166,14 +1166,15 @@
     style-loader "0.23.1"
     webpack "^4.2.0"
 
-"@guardian/consent-management-platform@1.1.0-beta.1":
-  version "1.1.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@guardian/consent-management-platform/-/consent-management-platform-1.1.0-beta.1.tgz#4d4307a184ef95c322c1415106abd288a20a844c"
-  integrity sha512-dB5ndusOYjxFFfbXG0fEFmbNfAFCdzAHJJLBN9tNSjEmd5sgxnRhUNMzx/o+jMVjzhQPcwru4bN3bsXZHmllfg==
+"@guardian/consent-management-platform@1.1.0-beta.2":
+  version "1.1.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@guardian/consent-management-platform/-/consent-management-platform-1.1.0-beta.2.tgz#f1a77562db4c53bfe8a3cc10dd71d5b9a9eb6f1e"
+  integrity sha512-oogycEnfH1BXStKkCmqgp3gVtivrV4PpVysaJicCMbioMNn0Qu0j+OtHod6UWhmTIDVCkVP5dD+68IyOmSNWBw==
   dependencies:
     "@guardian/src-foundations" "^0.2.3"
     consent-string "^1.5.1"
     js-cookie "^2.2.1"
+    whatwg-fetch "^3.0.0"
 
 "@guardian/dotcom-rendering@git://github.com/guardian/dotcom-rendering.git#version-1-alpha":
   version "0.1.0-alpha"
@@ -10862,6 +10863,11 @@ whatwg-fetch@>=0.10.0:
 whatwg-fetch@^0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-0.9.0.tgz#0e3684c6cb9995b43efc9df03e4c365d95fd9cc0"
+
+whatwg-fetch@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.0.0.tgz#fc804e458cc460009b1a2b966bc8817d2578aefb"
+  integrity sha512-9GSJUgz1D4MfyKU7KRqwOjXCXTqWdFNvEr7eUBYchQiVc744mqK/MzXPNR2WsPkmkOa4ywfg8C2n8h+13Bey1Q==
 
 whatwg-mimetype@^2.1.0, whatwg-mimetype@^2.2.0:
   version "2.3.0"

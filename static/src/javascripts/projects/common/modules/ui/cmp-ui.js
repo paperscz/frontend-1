@@ -7,19 +7,6 @@ import raven from 'lib/raven';
 let initUi;
 
 const show = (): Promise<boolean> => {
-    console.log('*** SHOW ***');
-
-    fetch('https://www.theguardian.com/commercial/cmp/vendorlist.json')
-        .then(response => {
-            if (response.ok) {
-                console.log('Response --->', response);
-            }
-            throw new Error(`${response.status} | ${response.statusText}`);
-        })
-        .catch(error => {
-            console.log('Error --->', error);
-        });
-
     if (initUi) {
         initUi();
     } else {
