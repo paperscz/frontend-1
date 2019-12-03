@@ -1,21 +1,14 @@
 // @flow
-import { cmpUi as cmpUi_ } from '@guardian/consent-management-platform';
+import { shouldShow } from '@guardian/consent-management-platform';
 import { isInVariantSynchronous as isInVariantSynchronous_ } from 'common/modules/experiments/ab';
 import { consentManagementPlatformUi } from './cmp-ui';
 
 jest.mock('lib/raven');
 
-const cmpUi: any = cmpUi_;
 const isInVariantSynchronous: any = isInVariantSynchronous_;
 
 jest.mock('@guardian/consent-management-platform', () => ({
-    cmpUi: {
-        canShow: jest.fn(),
-        setupMessageHandlers: jest.fn(),
-    },
-    // $FlowFixMe property requireActual is actually not missing Flow.
-    cmpConfig: jest.requireActual('@guardian/consent-management-platform')
-        .cmpConfig,
+    shouldShow: jest.fn(),
 }));
 
 jest.mock('common/modules/experiments/ab', () => ({
@@ -31,8 +24,8 @@ describe('cmp-ui', () => {
 
     describe('consentManagementPlatformUi', () => {
         describe('canShow', () => {
-            it('returns true if cmpUi.canShow true and in commercialCmpUiIab test', () => {
-                cmpUi.canShow.mockReturnValue(true);
+            it('returns true if cmpUi.shouldShow true and in commercialCmpUiIab test', () => {
+                shouldShow.mockReturnValue(true);
                 isInVariantSynchronous.mockReturnValue(true);
 
                 return consentManagementPlatformUi.canShow().then(show => {
@@ -40,8 +33,8 @@ describe('cmp-ui', () => {
                 });
             });
 
-            it('returns false if cmpUi.canShow false', () => {
-                cmpUi.canShow.mockReturnValue(false);
+            it('returns false if cmpUi.shouldShow false', () => {
+                shouldShow.mockReturnValue(false);
                 isInVariantSynchronous.mockReturnValue(true);
 
                 return consentManagementPlatformUi.canShow().then(show => {
@@ -50,7 +43,7 @@ describe('cmp-ui', () => {
             });
 
             it('returns false if not in commercialCmpUiIab test', () => {
-                cmpUi.canShow.mockReturnValue(true);
+                shouldShow.mockReturnValue(true);
                 isInVariantSynchronous.mockReturnValue(false);
 
                 return consentManagementPlatformUi.canShow().then(show => {
