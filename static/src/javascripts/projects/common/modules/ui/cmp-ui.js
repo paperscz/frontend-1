@@ -1,7 +1,7 @@
 // @flow
 import { isInVariantSynchronous } from 'common/modules/experiments/ab';
 import { commercialCmpUiIab } from 'common/modules/experiments/tests/commercial-cmp-ui-iab';
-import { cmpUi } from '@guardian/consent-management-platform';
+import { shouldShow } from '@guardian/consent-management-platform';
 import raven from 'lib/raven';
 
 let initUi;
@@ -69,7 +69,7 @@ export const consentManagementPlatformUi = {
     id: 'cmpUi',
     canShow: (): Promise<boolean> => {
         if (isInVariantSynchronous(commercialCmpUiIab, 'variant')) {
-            return Promise.resolve(cmpUi.canShow());
+            return Promise.resolve(shouldShow());
         }
 
         return Promise.resolve(false);
