@@ -36,7 +36,7 @@ const addScripts = (tags: Array<ThirdPartyTag>): void => {
             const script = document.createElement('script');
             script.src = tag.url;
             script.onload = tag.onLoad;
-            if (tag.async) {
+            if (tag.async === true) {
                 script.setAttribute('async', '');
             }
             if (tag.attrs) {
