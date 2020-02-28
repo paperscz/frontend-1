@@ -3,6 +3,8 @@ package model.structuredData
 import common.LinkTo
 import model.Article
 import model.liveblog.BodyBlock
+import model.ImageElement
+import model.ImageBlockElement
 import org.joda.time.DateTime
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc.RequestHeader
@@ -47,7 +49,18 @@ object BlogPosting {
       }
 
     }
-
+    
+    def blockImage(blog: Article, block: BodyBlock): JsValue = {
+       block.elements.collect {
+         case ImageBlockElement(media, data, showCredit) => Image(ImageElement(ElementProperties(null, 0), media)))
+       }.headOption.getOrElse{
+         blog.elements.mainPicture.map { picture => Image(picture) }
+       }
+      }
+    }
+    
+    
+    
     Json.obj(
       "@type" -> "BlogPosting",
       "headline" -> block.title.getOrElse[String](blog.trail.headline),
@@ -57,7 +70,8 @@ object BlogPosting {
       /* Schema.org -- Date of first broadcast/publication */
       "datePublished" -> blockFirstPublishedDate(block),
       /*  Schema.org -- The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed */
-      "dateModified" -> blockLastModifiedDate(block), 
+      "dateModified" -> blockLastModifiedDate(block),
+      "image" -> blockImage(block),
       "articleBody" -> blockBody(block)
     )
 
